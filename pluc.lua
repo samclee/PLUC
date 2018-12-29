@@ -1,3 +1,5 @@
+-- vector class
+-- adapted from https://github.com/vrld/hump/blob/master/vector.lua
 vec={}
 vec.__index=vec
 
@@ -36,7 +38,33 @@ function vec.__eq(a,b)
 	return a.x==b.x and a.y==b.y
 end
 
-function vec:__tostring()
-	return '('..tonumber(self.x)..','..
-	tonumber(self.y)..')'
+function vec:to_str()
+	return '('..self.x..','..
+	self.y..')'
+end
+
+function vec:len()
+	return sqrt(self.x*self.x+self.y*self.y)
+end
+
+function vec:dist(b)
+	local dx=self.x-b.x
+	local dy=self.y-b.y
+	return sqrt(dx*dx+dy*dy)
+end
+
+function vec:clone()
+		return vec.new(self.x,self.y)
+end
+
+function vec:normi()
+	local l=self:len()
+	if l>0 then
+		self.x,self.y=self.x/l,self.y/l
+	end
+	return self
+end
+
+function vec:norm()
+	return self:clone():normi()
 end
