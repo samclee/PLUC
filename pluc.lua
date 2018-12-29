@@ -68,3 +68,42 @@ end
 function vec:norm()
 	return self:clone():normi()
 end
+
+-- timer class
+timer={}
+timer.__index=timer
+
+function timer.new(si,fi)
+	local o={si=si or 0,fi=fi or 1,
+	s=0,f=0,done=true}
+	return setmetatable(o,timer)
+end
+
+function timer:update()
+ if not self.done then
+ 	if self.f==0 then
+ 		self.s-=1
+ 		self.f=self.fi
+ 	else
+ 		self.f-=1
+ 	end
+ 	
+ 	if(self.s==0) self.done=true
+ end
+ 
+ return self.s
+end
+
+function timer:reset()
+	self.done=false
+	self.s=self.si
+	self.f=self.fi
+end
+
+function timer:pause()
+	self.done=true
+end
+
+function timer:resume()
+	if(self.s!=0)self.done=false
+end
