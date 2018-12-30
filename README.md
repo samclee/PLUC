@@ -58,7 +58,9 @@ A stopwatch class that functions like an [egg timer](https://en.wikipedia.org/wi
 * **timer.new(ti, fi)**
   
   The constructor for a timer object. **Creating a timer does not start its countdown. To start a timer you must call** `timer:reset()`
+  
   **Arguments:** (numbers) ti, fi (defaults to ti=0, fi=1 if no arguments are provided)
+  
   **Returns:** (vector) A new vector object
 * **timer:reset()**
   
