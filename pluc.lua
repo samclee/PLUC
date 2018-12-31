@@ -54,7 +54,7 @@ function vec:dist(b)
 end
 
 function vec:clone()
-		return vec.new(self.x,self.y)
+	return vec.new(self.x,self.y)
 end
 
 function vec:normi()
@@ -73,31 +73,32 @@ end
 timer={}
 timer.__index=timer
 
-function timer.new(si,fi)
-	local o={si=si or 0,fi=fi or 1,
-	s=0,f=0,done=true}
+function timer.new(ti,fi)
+	local o={ti=ti or 0,fi=fi or 1,
+	t=0,f=0,done=true}
 	return setmetatable(o,timer)
 end
 
 function timer:update()
  if not self.done then
  	if self.f==0 then
- 		self.s-=1
+ 		self.t-=1
  		self.f=self.fi
  	else
  		self.f-=1
  	end
  	
- 	if(self.s==0) self.done=true
+ 	if(self.t==0) self.done=true
  end
  
- return self.s
+ return self.t
 end
 
 function timer:reset()
 	self.done=false
-	self.s=self.si
+	self.t=self.ti
 	self.f=self.fi
+	return self.t
 end
 
 function timer:pause()
@@ -105,5 +106,5 @@ function timer:pause()
 end
 
 function timer:resume()
-	if(self.s!=0)self.done=false
+	if(self.t!=0)self.done=false
 end
